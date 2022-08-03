@@ -1,14 +1,14 @@
 #include "shell.h"
 
 /**
- *exec_cmd - Function that executes commands
+ *exec_line - Function that executes commands
  *
  *@argv: Argument vector
  *
  *return: Returns zero on success
  */
 
-void exec_cmd(char **argv)
+void exec_line(char **argv)
 {
 	pid_t pid;
 

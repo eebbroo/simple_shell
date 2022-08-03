@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- *tokenizer - A function that pasrese a string
+ *tok_line - A function that pasrese a string
  *
  *@buf: Pointer to string
  *@buf_cpy: A copy of buffer
@@ -9,7 +9,7 @@
  *return: Returns string tokens
  */
 
-void tokenizer(char *buf, char *buf_cpy)
+void tok_line(char *buf, char *buf_cpy)
 {
 	char *token;
 	char delim[] = " \n";
@@ -33,7 +33,7 @@ void tokenizer(char *buf, char *buf_cpy)
 		if (token == NULL)
 			argv[++i] = NULL;
 	}
-	exec_cmd(argv);
+	exec_line(argv);
 	free(argv);
 	free(token);
 }

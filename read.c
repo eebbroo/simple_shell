@@ -1,14 +1,14 @@
 #include "shell.h"
 
 /**
- *read_cmd - Function that reads strings from command line
+ *read_line - Function that reads strings from command line
  *
  *@void: No arguments
  *
  *return: Return character buffer
  */
 
-void read_cmd(void)
+void read_line(void)
 {
 	size_t buf_size;
 	ssize_t nread;
@@ -24,7 +24,7 @@ void read_cmd(void)
 	}
 	buf_cpy = malloc(sizeof(char) * nread);
 	strcpy(buf_cpy, buf);
-	tokenizer(buf, buf_cpy);
+	tok_line(buf, buf_cpy);
 	free(buf);
 	free(buf_cpy);
 }

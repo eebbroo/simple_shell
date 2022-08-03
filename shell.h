@@ -8,8 +8,8 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 
-void read_cmd(void);
-void tokenizer(char *buf, char *buf_cpy);
-void exec_cmd(char **argv);
+void read_line(void);
+void tok_line(char *buf, char *buf_cpy);
+void exec_line(char **argv);
 
 #endif
