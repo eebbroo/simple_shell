@@ -1,12 +1,13 @@
 #include "shell.h"
 
- /**
-  * find_path - A function that find the path to environment variables
-  *
-  * @env: This is the environment varaible
-  *
-  * Return: The path string.
-  */
+/**
+ * find_path - A function that finds the path
+ * to environment variables
+ *
+ * @env: Environment path
+ *
+ * Return: The path string.
+ */
 
 char *find_path(char **env)
 {
