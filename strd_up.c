@@ -2,11 +2,12 @@
 
 /**
  * _strdup - Return a pointer to a duplicated string
+ *
  * @s: The string to be duplicated
  *
- * Return: The address of a new string if succesful else
- * it returns NULL.
+ * Return: return address of a new string OR NULL on fail.
  */
+
 char *_strdup(char *s)
 {
 	char *str;

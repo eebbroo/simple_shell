@@ -5,15 +5,15 @@
  *
  * @str: input string
  *
- * Return: The new trimmed string
+ * Return: return new string
  */
 char *remove_space(char *str)
 {
-	int str_len, actual, i;
+	int str_len, real_len, i;
 	char *mem;
 
 	str_len = 0;
-	actual = 0;
+	real_len = 0;
 	while (str[str_len] != '\0')
 		str_len++;
 
@@ -23,11 +23,11 @@ char *remove_space(char *str)
 	{
 		if (str[i] != ' ' && str[i] != '\n')
 		{
-			mem[actual] = str[i];
-			actual++;
+			mem[real_len] = str[i];
+			real_len++;
 		}
 	}
-	mem[actual] = '\0';
+	mem[real_len] = '\0';
 
 	return (mem);
 }
