@@ -9,19 +9,17 @@
 
 void read_cmd(char **buf, size_t *buflen)
 {
-
-        if (getline(buf, buflen, stdin) == -1)
-        {
-                if (feof(stdin))
-                {
-                        free(*buf);
-                        exit(EXIT_SUCCESS);
-                }
-
-                perror("Error occurred");
-                free(*buf);
-                exit(EXIT_FAILURE);
-        }
+	if (getline(buf, buflen, stdin) == -1)
+	{
+		if (feof(stdin))
+		{
+			free(*buf);
+			exit(EXIT_SUCCESS);
+		}
+		perror("Error occurred");
+		free(*buf);
+		exit(EXIT_FAILURE);
+	}
 }
 
 /**
@@ -33,39 +31,39 @@ void read_cmd(char **buf, size_t *buflen)
  * @env: array of environment variable
  * Return: 0 on success
  */
-
-
 int REPL(char *buf, size_t buflen, char **cmd, char **argv, char **env)
 {
+	do {
+		print_prompt();
+		read_cmd(&buf, &buflen);
 
-        do {
-                print_prompt();
-                read_cmd(&buf, &buflen);
 		if (buf[0] == '\0' || _strcmp(buf, "\n") == 0)
-                {
-                        free(buf);
-                        continue;
-                }
+		{
+			free(buf);
+			continue;
+		}
 		if (_strcmp(buf, "exit\n") == 0)
-                {
-                        free(buf);
-                        exit(EXIT_SUCCESS);
-                }
-                if (_strcmp(buf, "env\n") == 0)
-                {
-                        print_env(env);
-                        free(buf);
-                        continue;
-                }
-                parser(buf, cmd);
+		{
+			free(buf);
+			exit(EXIT_SUCCESS);
+		}
+		if (_strcmp(buf, "env\n") == 0)
+		{
+			print_env(env);
+			free(buf);
+			continue;
+		}
+		parser(buf, cmd);
 		if (cmd[0] == NULL)
-                        continue;
+			continue;
 		if (_strcmp(cmd[0], "exit") == 0 && get_arr_len(cmd) == 2)
-                {
-                        int status = _atoi(cmd[1]);
-                        exit(status);
-                }
-                execute_cmd(cmd, argv, env);
-        } while (1);
-        exit(EXIT_SUCCESS);
+		{
+			int status = _atoi(cmd[1]);
+
+			exit(status);
+		}
+		execute_cmd(cmd, argv, env);
+
+	} while (1);
+	exit(EXIT_SUCCESS);
 }

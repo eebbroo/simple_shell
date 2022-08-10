@@ -7,5 +7,5 @@
 
 void print_prompt(void)
 {
-        fprintf(stderr, "Ogu_Majam_prompt===>$ ");
+	fprintf(stderr, "Ogu_Majam_prompt===>$ ");
 }
