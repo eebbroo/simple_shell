@@ -1,51 +1,44 @@
 #include "shell.h"
 
 /**
- * main - The main shell program
+ * main - entry point
+ * @ac: arg count
+ * @av: arg vector
  *
- * @ac: The argument count
- * @av: The argument vector
- *
- * @env: the environment variable
- *
- * Return: Always zero (0)
+ * Return: 0 on success, 1 on error
  */
-
-int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av,
-		__attribute__((unused)) char **env)
+int main(int ac, char **av)
 {
-	char *str = NULL;
-	size_t strCap = 0;
-	size_t strReturn = 1;
-	int stats, flag;
-	char **tokens;
-	pid_t childPid;
+	info_t info[] = { INFO_INIT };
+	int fd = 2;
 
-	while (strReturn > 0)
+	asm ("mov %1, %0\n\t"
+		"add $3, %0"
+		: "=r" (fd)
+		: "r" (fd));
+
+	if (ac == 2)
 	{
-		flag = 1;
-		printf("Ogu_Majam$ ");
-		fflush(stdout);
-		strReturn = getline(&str, &strCap, stdin);
-		if (strReturn == ULONG_MAX)
-			break;
-		tokens = parse(str, 0);
-		checks(tokens, env, &flag);
-		if (flag == 1)
-			childPid = fork();
-		if (childPid != -1 && flag == 1)
+		fd = open(av[1], O_RDONLY);
+		if (fd == -1)
 		{
-			if (childPid == 0)
+			if (errno == EACCES)
+				exit(126);
+			if (errno == ENOENT)
 			{
-				execve(tokens[0], tokens, NULL);
-				perror(av[0]);
-				exit(1);
+				_eputs(av[0]);
+				_eputs(": 0: Can't open ");
+				_eputs(av[1]);
+				_eputchar('\n');
+				_eputchar(BUF_FLUSH);
+				exit(127);
 			}
-			else
-			{
-				wait(&stats);
-			}
+			return (EXIT_FAILURE);
 		}
+		info->readfd = fd;
 	}
-	return (0);
+	populate_env_list(info);
+	read_history(info);
+	hsh(info, av);
+	return (EXIT_SUCCESS);
 }
