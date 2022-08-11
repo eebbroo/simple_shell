@@ -137,7 +137,7 @@ int _putchar(char);
 char *_strncpy(char *, char *, int);
 char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
-char **strtow(char *, char *);
+char **parse(char *, char *);
 char **strtow2(char *, char);
 
 /* memory_functions */
@@ -147,9 +147,9 @@ void *_realloc(void *, unsigned int, unsigned int);
 int bfree(void **);
 
 /* more string and number func */
-int interactive(info_t *);
-int is_delim(char, char *);
-int _isalpha(int);
+int active(info_t *);
+int _delimeter(char, char *);
+int _alpha_char(int);
 int _atoi(char *);
 int _erratoi(char *);
 void print_error(info_t *, char *);
@@ -170,16 +170,16 @@ int _getline(info_t *, char **, size_t *);
 void sigintHandler(int);
 
 /* add on functions for infor struct */
-void clear_info(info_t *);
-void set_info(info_t *, char **);
-void free_info(info_t *, int);
+void remove_info(info_t *);
+void s_info(info_t *, char **);
+void let_info(info_t *, int);
 
 /* dealing with enviromental varaible */
-char *_getenv(info_t *, const char *);
-int _myenv(info_t *);
-int _mysetenv(info_t *);
-int _myunsetenv(info_t *);
-int populate_env_list(info_t *);
+char *get_env(info_t *, const char *);
+int _env(info_t *);
+int _set_env(info_t *);
+int _unset_env(info_t *);
+int put_env_list(info_t *);
 char **get_environ(info_t *);
 int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);
