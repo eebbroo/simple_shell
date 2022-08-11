@@ -1,14 +1,9 @@
-# simple_shell
-0x16. C - Simple Shell
+# simple-shell
+A simple UNIX command interpreter written as part of the low-level programming and algorithm track at Alx School.
 
+## Description
+In this project, we coded from scratch a simple Unix shell. A shell is an interactive > command-line interpreter. We created a shell that would utilize the command line > interface (CLI).
 
-## Project Description
-
-The simple shell is the Linux command line interpreter that provides an interface between the user and the kernel and executes programs  commands. 
-
-
-### ALX - HOLBERTON Projects Collaboration on the Simple Shell Project.
-Authored by: 
-1. Andrew Ishaku Wreford
-2. Thomas Endalemaw
- 
+##  Authors
+	. Majam Ibrahim
+	. Ogu Johnkennedy
